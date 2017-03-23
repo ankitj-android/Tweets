@@ -3,5 +3,9 @@
 
     <string name="app_name">Tweets</string>
     <string name="login_label">Log in</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_compose">Compose</string>
+    <string name="button_save">Button</string>
+    <string name="button_cancel">Cancel</string>
 
 </resources>
