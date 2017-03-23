@@ -14,6 +14,7 @@ import com.codepath.apps.tweets.TwitterClient;
 import com.codepath.apps.tweets.adapter.TweetsAdapter;
 import com.codepath.apps.tweets.fragment.ComposeDialogFragment;
 import com.codepath.apps.tweets.fragment.ComposeDialogFragment.ComposeListener;
+import com.codepath.apps.tweets.listener.EndlessScrollListener;
 import com.codepath.apps.tweets.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -37,6 +38,8 @@ public class HomeTimelineActivity extends AppCompatActivity implements ComposeLi
 
     @BindView(R.id.listViewTweets) ListView listViewTweets;
 
+    private Long sinceId = 1L;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,14 @@ public class HomeTimelineActivity extends AppCompatActivity implements ComposeLi
         tweetsAdapter = new TweetsAdapter(this, tweets);
 
         listViewTweets.setAdapter(tweetsAdapter);
-        populateHomeTimeline();
+        listViewTweets.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                populateHomeTimeline(page);
+                return true;
+            }
+        });
+        populateHomeTimeline(0);
     }
 
     @Override
@@ -77,9 +87,9 @@ public class HomeTimelineActivity extends AppCompatActivity implements ComposeLi
     }
 
     // calling api, deserializing and updating the view.
-    private void populateHomeTimeline() {
-
-        client.getHomeTimeline(new JsonHttpResponseHandler() {
+    private void populateHomeTimeline(int page) {
+        Log.d("fetching timeline ... " , String.valueOf(sinceId));
+        client.getHomeTimeline(page, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
