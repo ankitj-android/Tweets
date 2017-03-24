@@ -28,6 +28,7 @@ public class ComposeDialogFragment extends DialogFragment {
 
     @BindView(R.id.editTextCompose) EditText editTextCompose;
     @BindView(R.id.buttonSave) Button buttonSave;
+    @BindView(R.id.buttonCancel) Button buttonCancel;
 
     @Nullable
     @Override
@@ -37,10 +38,17 @@ public class ComposeDialogFragment extends DialogFragment {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("debug", "settings changes saved");
+                Log.d("debug", "tweet saved");
                 ComposeListener composeListener= (ComposeListener) getActivity();
                 String composedTweetBody = editTextCompose.getText().toString();
                 composeListener.onSave(composedTweetBody);
+                dismiss();
+            }
+        });
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("debug", "tweet cancelled");
                 dismiss();
             }
         });
