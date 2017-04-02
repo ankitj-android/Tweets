@@ -31,7 +31,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	@Override
 	public void onLoginSuccess() {
 		Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-		Intent i = new Intent(this, HomeTimelineActivity.class);
+		Intent i = new Intent(this, TweetsTimelineActivity.class);
 		startActivity(i);
 	}
 

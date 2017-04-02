@@ -1,14 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HomeTimelineActivity" >
+    tools:context=".activity.TweetsTimelineActivity" >
 
-    <ListView
-        android:id="@+id/listViewTweets"
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabsStripTimeline"
+        app:pstsShouldExpand="true"
+        app:pstsTextAllCaps="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="7dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="48dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerTimeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabsStripTimeline"
+        android:background="@android:color/white" />
+
 </RelativeLayout>
