@@ -2,11 +2,12 @@ package com.codepath.apps.tweets.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /**
  * Created by ajasuja on 3/21/17.
  */
-
+@Parcel
 public class User {
     private long id;
     private String name;
@@ -16,6 +17,9 @@ public class User {
     private int followersCount;
     private int followingsCount;
 
+    // empty constructor needed by the Parceler library
+    public User() {
+    }
     public long getId() {
         return id;
     }

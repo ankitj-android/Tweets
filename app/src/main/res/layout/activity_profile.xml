@@ -1,93 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codepath.apps.tweets.activity.ProfileActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutProfileHeader"
+    <FrameLayout
+        android:id="@+id/frameLayoutProfileHeader"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <ImageView
-            android:id="@+id/imageViewUser"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="18dp"
-            app:srcCompat="@drawable/ic_launcher" />
-
-        <TextView
-            android:id="@+id/textViewUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageViewUser"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="21dp"
-            android:layout_toEndOf="@+id/imageViewUser"
-            android:layout_toRightOf="@+id/imageViewUser"
-            android:text="Ankit Jasuja" />
-
-        <TextView
-            android:id="@+id/textViewTagline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="21dp"
-            android:layout_toEndOf="@+id/imageViewUser"
-            android:layout_toRightOf="@+id/imageViewUser"
-            android:layout_below="@+id/textViewUserName"
-            android:layout_marginTop="5dp"
-            android:text="User Tag line" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutCounts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayoutProfileHeader"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textViewFollowers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/linearLayoutCounts"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp"
-            android:layout_marginLeft="26dp"
-            android:layout_marginStart="26dp"
-            android:layout_weight="1"
-            android:text="10 followers" />
-
-        <TextView
-            android:id="@+id/textViewFollowings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="20 followings" />
-    </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"/>
 
     <FrameLayout
-        android:id="@+id/flContainer"
+        android:id="@+id/frameLayoutUserTimeline"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayoutCounts"
+        android:layout_below="@+id/frameLayoutProfileHeader"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
-    </FrameLayout>
+        tools:layout_editor_absoluteY="8dp"/>
 
 </RelativeLayout>

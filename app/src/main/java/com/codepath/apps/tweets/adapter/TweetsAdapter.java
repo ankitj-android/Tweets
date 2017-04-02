@@ -1,6 +1,7 @@
 package com.codepath.apps.tweets.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.tweets.R;
+import com.codepath.apps.tweets.activity.ProfileActivity;
 import com.codepath.apps.tweets.models.Tweet;
 import com.codepath.apps.tweets.util.CircularTransformation;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //data
-        Tweet tweet = getItem(position);
+        final Tweet tweet = getItem(position);
         //view
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -59,6 +63,15 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
         }
         //update view with data
         updateView(tweet, viewHolder);
+        viewHolder.imageViewUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                intent.putExtra("screenName",tweet.getUser().getScreenName());
+                intent.putExtra("user", Parcels.wrap(tweet.getUser()));
+                getContext().startActivity(intent);
+            }
+        });
         //return updated view
         return convertView;
     }
@@ -68,6 +81,7 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
                 .load(tweet.getUser().getProfileImageUrl())
                 .transform(new CircularTransformation())
                 .into(viewHolder.imageViewUserProfile);
+        viewHolder.imageViewUserProfile.setTag(tweet.getUser().getScreenName());
         viewHolder.textViewName.setText(tweet.getUser().getName());
         viewHolder.textViewScreenName.setText(tweet.getUser().getScreenName());
         viewHolder.textViewCreatedAt.setText(tweet.getCreatedAt());
