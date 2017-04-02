@@ -1,5 +1,6 @@
 package com.codepath.apps.tweets.activity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -45,10 +46,14 @@ public class TweetsTimelineActivity extends AppCompatActivity implements Compose
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home_timeline, menu);
-        Drawable yourdrawable = menu.getItem(0).getIcon(); // change 0 with 1,2 ...
-        yourdrawable.mutate();
-        yourdrawable.setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.SRC_IN);
+        beautifyIcon(menu.getItem(0).getIcon());
+        beautifyIcon(menu.getItem(1).getIcon());
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void beautifyIcon(Drawable drawable1) {
+        drawable1.mutate();
+        drawable1.setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.SRC_IN);
     }
 
     @Override
@@ -58,10 +63,19 @@ public class TweetsTimelineActivity extends AppCompatActivity implements Compose
                 Log.d("[DEBUG]", "composing called ...");
                 showComposeDialog();
                 return true;
+            case R.id.miProfile :
+                Log.d("[DEBUG]", "profile called ...");
+                showProfile();
+                return true;
             default:
                 Log.d("[DEBUG]", "default item selected");
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showProfile() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     private void showComposeDialog() {

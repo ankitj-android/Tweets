@@ -33,7 +33,8 @@
                     android:scheme="oauth" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TweetsTimelineActivity"></activity>
+        <activity android:name=".activity.TweetsTimelineActivity" />
+        <activity android:name=".activity.ProfileActivity"></activity>
     </application>
 
 </manifest>
