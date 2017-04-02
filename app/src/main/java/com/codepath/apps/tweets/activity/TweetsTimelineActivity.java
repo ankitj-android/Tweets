@@ -25,16 +25,8 @@ import static butterknife.ButterKnife.bind;
 
 public class TweetsTimelineActivity extends AppCompatActivity implements ComposeListener {
 
-//    private TwitterClient client;
-//    private List<Tweet> tweets;
-//    private TweetsAdapter tweetsAdapter;
-//
-//    @BindView(R.id.listViewTweets) ListView listViewTweets;
-
     @BindView(R.id.tabsStripTimeline) PagerSlidingTabStrip tabStripTimeline;
     @BindView(R.id.viewPagerTimeline) ViewPager viewPagerTimeline;
-
-    private Long sinceId = 1L;
 
     private HomeTimelineFragment homeTimelineFragment;
 
@@ -48,56 +40,7 @@ public class TweetsTimelineActivity extends AppCompatActivity implements Compose
         }
         viewPagerTimeline.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
         tabStripTimeline.setViewPager(viewPagerTimeline);
-
-//        client = TwitterApplication.getRestClient();
-//        tweets = new ArrayList<>();
-//        tweetsAdapter = new TweetsAdapter(this, tweets);
-//
-//        listViewTweets.setAdapter(tweetsAdapter);
-//        listViewTweets.setOnScrollListener(new EndlessScrollListener() {
-//            @Override
-//            public boolean onLoadMore(int page, int totalItemsCount) {
-//                populateTimeline(page);
-//                return true;
-//            }
-//        });
-//        populateHomeTimeline(0);
-//        populateMentionsTimeline();
     }
-
-//    // calling api, deserializing and updating the view.
-//    private void populateHomeTimeline(int page) {
-//        Log.d("fetching timeline ... " , String.valueOf(sinceId));
-//        client.getHomeTimeline(page, new JsonHttpResponseHandler() {
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                tweetsAdapter.addAll(Tweet.fromJsonArray(response));
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                super.onFailure(statusCode, headers, throwable, errorResponse);
-//            }
-//        });
-//    }
-//
-//    private void populateMentionsTimeline() {
-//        Log.d("flow", "fetching mentions timeline ... ");
-//        client.getMentionsTimeline(new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                tweetsAdapter.addAll(Tweet.fromJsonArray(response));
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                super.onFailure(statusCode, headers, throwable, errorResponse);
-//            }
-//        });
-//
-//    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,34 +74,14 @@ public class TweetsTimelineActivity extends AppCompatActivity implements Compose
     @Override
     public void onSave(String tweetBody) {
         homeTimelineFragment.addNewTweet(tweetBody);
-//        client.postTweet(tweetBody, new JsonHttpResponseHandler(){
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                try {
-//                    Tweet tweet = Tweet.fromJson(response);
-//                    tweets.add(0, tweet);
-//                    tweetsAdapter.notifyDataSetChanged();
-//
-////                    tweetsAdapter.add(tweet);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                super.onFailure(statusCode, headers, throwable, errorResponse);
-//            }
-//        });
     }
 
 
     public class TweetsPagerAdapter extends FragmentPagerAdapter {
         private String[] tabsTitle = { "Home", "Mentions" };
 
-        public TweetsPagerAdapter(FragmentManager fm) {
-            super(fm);
+        public TweetsPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
 
         @Override
